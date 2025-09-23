@@ -1,0 +1,20 @@
+---
+- name: Template with a loop
+  hosts: planetexpress
+  connection: ansible.builtin.ssh
+  gather_facts: no
+
+  # these variables are used in the template ship.cfg.j2
+  vars:
+    mission_list:
+      - [{"mission": "primary", "planet": "luna park"}, {"mission": "secondary", "planet": "cineplex 14"}]
+
+  tasks:
+    - name: Create primary mission orders
+      ansible.builtin.template:
+
+    - name: Running a looping jinja template
+      ansible.builtin.template:  
+        src: templates/crew_report.txt.j2    # name of the template on ansible controller
+        dest: ~/crew_report.txt              # name of the completed file to be placed on the target system
+
